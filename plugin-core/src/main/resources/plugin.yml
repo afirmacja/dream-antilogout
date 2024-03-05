@@ -1,0 +1,9 @@
+main: "cc.dreamcode.antilogout.AntiLogoutPlugin"
+version: "1.0-InDEV"
+name: "dream-antilogout"
+description: "dream-anitlogout plugin written by dreamcode.cc"
+website: "https://dreamcode.cc/"
+author: "trueman96"
+api-version: 1.13
+softdepend:
+  - 'WorldGuard'

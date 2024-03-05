@@ -1,0 +1,11 @@
+**Libraries**: <33
+- [Okaeri-Configs](https://github.com/OkaeriPoland/okaeri-configs) by [Okaeri](https://github.com/OkaeriPoland)
+- [Okaeri-Injector](https://github.com/OkaeriPoland/okaeri-injector) by [Okaeri](https://github.com/OkaeriPoland)
+- [Okaeri-Placeholders](https://github.com/OkaeriPoland/okaeri-placeholders) by [Okaeri](https://github.com/OkaeriPoland)
+- [Okaeri-Tasker](https://github.com/OkaeriPoland/okaeri-tasker) by [Okaeri](https://github.com/OkaeriPoland)
+- [Dream-Platform](https://github.com/DreamPoland/dream-platform) by [DreamCode](https://github.com/DreamPoland)
+- [Dream-Command](https://github.com/DreamPoland/dream-command) by [DreamCode](https://github.com/DreamPoland)
+- [Dream-Notice](https://github.com/DreamPoland/dream-notice) by [DreamCode](https://github.com/DreamPoland)
+- [Dream-Utilities](https://github.com/DreamPoland/dream-utilities) by [DreamCode](https://github.com/DreamPoland)
+- [XSeries](https://github.com/CryptoMorin/XSeries) by [CryptoMorin](https://github.com/CryptoMorin)
+- and [Lombok](https://github.com/projectlombok/lombok) for clean dev by [ProjectLombok](https://github.com/projectlombok)
