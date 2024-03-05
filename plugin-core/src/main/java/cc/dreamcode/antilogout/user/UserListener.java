@@ -196,11 +196,15 @@ public class UserListener implements Listener {
                 this.antiLogoutConfig.getPluginWrapper().getBlockedRegions(),
                 this.antiLogoutConfig.getPluginWrapper().getRegions());
         if (regionCenter != null) {
-            Location l = regionCenter.subtract(player.getLocation());
-            double distance = player.getLocation().distance(regionCenter);
+            if (this.antiLogoutConfig.getPluginWrapper().isKnockbackFromBorder()) {
+                Location l = regionCenter.subtract(player.getLocation());
+                double distance = player.getLocation().distance(regionCenter);
 
-            Vector vector = l.toVector().add(new Vector(0, 5, 0)).multiply(1.25 / distance);
-            player.setVelocity(vector.multiply(-1.5));
+                Vector vector = l.toVector().add(new Vector(0, 5, 0)).multiply(1.25 / distance);
+                player.setVelocity(vector.multiply(-1.5));
+            } else {
+                event.setCancelled(true);
+            }
         }
     }
 

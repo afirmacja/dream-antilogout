@@ -60,6 +60,7 @@ public class AntiLogoutConfig extends OkaeriConfig {
         @Setter
         private boolean pvpEnabled = true;
         private boolean protectionAfterDeath = false;
+        private boolean knockbackFromBorder = true;
         private boolean canDamagePlayersWhileInCreative = false;
         private String commandNotAllowedWhileInCombatBypass = "dream.command.bypass";
         private String antiLogoutBypass = "dream.antilog.bypass";
