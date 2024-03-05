@@ -1,5 +1,6 @@
 package cc.dreamcode.antilogout;
 
+import cc.dreamcode.antilogout.location.Region;
 import cc.dreamcode.notice.minecraft.MinecraftNoticeType;
 import cc.dreamcode.notice.minecraft.bukkit.BukkitNotice;
 import cc.dreamcode.platform.bukkit.component.configuration.Configuration;
@@ -24,9 +25,9 @@ import java.util.List;
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public class AntiLogoutConfig extends OkaeriConfig {
 
+    public StorageConfig storageWrapper = new StorageConfig("dream_antilogout");
     private PluginWrapper pluginWrapper = new PluginWrapper();
     private MessageWrapper messageWrapper = new MessageWrapper();
-    public StorageConfig storageWrapper = new StorageConfig("dream_antilogout");
 
     @Getter
     @SuppressWarnings("FieldMayBeFinal")
@@ -41,6 +42,17 @@ public class AntiLogoutConfig extends OkaeriConfig {
                 "msg",
                 "w"
         );
+        @Comment("Regiony w których nie ma antylogouta. (WORLDGUARD)")
+        private List<String> blockedRegions = Arrays.asList(
+                "spawn",
+                "wybojisko"
+        );
+        @Comment("Regiony w których nie ma antylogouta. (tutaj jak nie ma worldguarda)")
+        private List<Region> regions = Arrays.asList(
+                new Region(-10, 10, 25, 50, -10, 10),
+                new Region(-20, 20, 25, 50, -20, 20)
+        );
+
 
         private Duration combatTime = Duration.ofSeconds(21), protectionTime = Duration.ofMinutes(5);
 

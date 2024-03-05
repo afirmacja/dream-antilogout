@@ -2,6 +2,7 @@ package cc.dreamcode.antilogout.user;
 
 import cc.dreamcode.antilogout.AntiLogoutConfig;
 import cc.dreamcode.antilogout.helper.AntiLogoutHelper;
+import cc.dreamcode.antilogout.location.LocationTeller;
 import cc.dreamcode.utilities.TimeUtil;
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.injector.annotation.Inject;
@@ -109,6 +110,12 @@ public class UserListener implements Listener {
         }
 
         Player victim = (Player) event.getEntity();
+        if (LocationTeller.isInBlockedRegion(victim.getLocation(),
+                this.antiLogoutConfig.getPluginWrapper().getBlockedRegions(),
+                this.antiLogoutConfig.getPluginWrapper().getRegions())) {
+            return;
+        }
+
         User victimUser = this.userCache.findUserByPlayer(victim);
         if (victimUser == null) {
             return;
