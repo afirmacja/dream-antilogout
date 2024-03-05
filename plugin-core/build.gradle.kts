@@ -11,7 +11,7 @@ dependencies {
     implementation("cc.dreamcode.platform:bukkit:1.9.8")
     implementation("cc.dreamcode.platform:bukkit-command:1.9.8")
     implementation("cc.dreamcode.platform:bukkit-config:1.9.8")
-    implementation("cc.dreamcode.platform:persistence:1.9.15")
+    implementation("cc.dreamcode.platform:persistence:1.10.0-pre.8")
     implementation("cc.dreamcode:utilities:1.2.22")
     implementation("cc.dreamcode:utilities-bukkit:1.2.22")
     implementation("cc.dreamcode.notice:minecraft:1.3.11")
