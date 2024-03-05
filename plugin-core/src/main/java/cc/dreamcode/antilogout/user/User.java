@@ -1,9 +1,11 @@
 package cc.dreamcode.antilogout.user;
 
+import eu.okaeri.configs.annotation.Exclude;
 import eu.okaeri.persistence.document.Document;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.bukkit.boss.BossBar;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -14,8 +16,9 @@ import java.util.UUID;
 public final class User extends Document {
 
     private String nickname;
-
     private long lastAttackTime, protection;
+    @Exclude
+    private transient BossBar protectionBossBar;
 
     public boolean isInCombat() {
         return this.lastAttackTime > System.currentTimeMillis();

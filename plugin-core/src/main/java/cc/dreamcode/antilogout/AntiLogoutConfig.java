@@ -7,12 +7,17 @@ import cc.dreamcode.platform.bukkit.component.configuration.Configuration;
 import cc.dreamcode.platform.persistence.StorageConfig;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Comment;
+import eu.okaeri.configs.annotation.CustomKey;
 import eu.okaeri.configs.annotation.Header;
 import eu.okaeri.configs.annotation.NameModifier;
 import eu.okaeri.configs.annotation.NameStrategy;
 import eu.okaeri.configs.annotation.Names;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -25,8 +30,13 @@ import java.util.List;
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public class AntiLogoutConfig extends OkaeriConfig {
 
-    public StorageConfig storageWrapper = new StorageConfig("dream_antilogout");
+    @CustomKey("storage")
+    private StorageConfig storageWrapper = new StorageConfig("dream_antilogout");
+
+    @CustomKey("plugin")
     private PluginWrapper pluginWrapper = new PluginWrapper();
+
+    @CustomKey("messages")
     private MessageWrapper messageWrapper = new MessageWrapper();
 
     @Getter
@@ -53,6 +63,9 @@ public class AntiLogoutConfig extends OkaeriConfig {
                 new Region(-20, 20, 25, 50, -20, 20)
         );
 
+        @Comment("Czy ma być używany bossbar do informacji o ochronie. Jak nie to będzie użyty actionbar z messages")
+        private boolean useBossBarForProtectionInfo = true;
+        private BossBarWrapper protectionBossBar = new BossBarWrapper();
 
         private Duration combatTime = Duration.ofSeconds(21), protectionTime = Duration.ofMinutes(5);
 
@@ -64,6 +77,17 @@ public class AntiLogoutConfig extends OkaeriConfig {
         private boolean canDamagePlayersWhileInCreative = false;
         private String commandNotAllowedWhileInCombatBypass = "dream.command.bypass";
         private String antiLogoutBypass = "dream.antilog.bypass";
+
+        @Getter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class BossBarWrapper extends OkaeriConfig {
+
+            private String title = "&a&lOchrona startowa {time}";
+            private double progress = 1.0D;
+            private BarColor color = BarColor.RED;
+            private BarStyle style = BarStyle.SOLID;
+        }
     }
 
     @Getter
@@ -91,6 +115,9 @@ public class AntiLogoutConfig extends OkaeriConfig {
         private BukkitNotice successChangedPvpStatus = BukkitNotice.of(MinecraftNoticeType.CHAT, "&aPomyslnie zmieniono status pvp na {status}.");
 
         private BukkitNotice announceLoggedOutWhileInCombat = BukkitNotice.of(MinecraftNoticeType.CHAT, "&cGracz &4{player} &cwylogowal sie podczas walki!");
+
+        @Comment("Jeśli nie używamy bossbara to te wiadomości będą wyświetlane w actionbarze.")
+        private BukkitNotice infoProtection = BukkitNotice.of(MinecraftNoticeType.ACTION_BAR, "&aOchrona startowa: &4{time}");
     }
 
 }

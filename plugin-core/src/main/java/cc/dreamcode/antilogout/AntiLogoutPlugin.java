@@ -4,6 +4,7 @@ import cc.dreamcode.antilogout.command.AntiLogoutCommand;
 import cc.dreamcode.antilogout.user.UserCache;
 import cc.dreamcode.antilogout.user.UserListener;
 import cc.dreamcode.antilogout.user.UserRepository;
+import cc.dreamcode.antilogout.user.task.UserProtectionShowTask;
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.notice.minecraft.bukkit.serdes.BukkitNoticeSerdes;
 import cc.dreamcode.platform.DreamVersion;
@@ -58,6 +59,7 @@ public final class AntiLogoutPlugin extends DreamBukkitPlatform implements Dream
         componentManager.registerComponent(UserCache.class);
         componentManager.registerComponent(UserRepository.class);
         componentManager.registerComponent(UserListener.class);
+        componentManager.registerComponent(UserProtectionShowTask.class);
 
         componentManager.registerComponent(AntiLogoutCommand.class);
     }
