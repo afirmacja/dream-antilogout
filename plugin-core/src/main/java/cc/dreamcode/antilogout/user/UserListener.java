@@ -11,6 +11,7 @@ import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.tasker.core.Tasker;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,7 +20,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.util.Vector;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -175,6 +178,30 @@ public class UserListener implements Listener {
 
         event.setCancelled(true);
         this.antiLogoutConfig.getMessageWrapper().getErrorCannotUseCommandWhileInCombat().send(player);
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onMove(PlayerMoveEvent event) {
+        Location from = event.getFrom(), to = event.getTo();
+        if (to == null || (from.getBlockX() == to.getBlockX() && from.getBlockZ() == to.getBlockZ())) {
+            return;
+        }
+
+        Player player = event.getPlayer();
+        if (!this.userCache.findUserByPlayer(player).isInCombat() || player.hasPermission(this.antiLogoutConfig.getPluginWrapper().getAntiLogoutBypass())) {
+            return;
+        }
+
+        Location regionCenter = LocationTeller.findRegionCenter(to,
+                this.antiLogoutConfig.getPluginWrapper().getBlockedRegions(),
+                this.antiLogoutConfig.getPluginWrapper().getRegions());
+        if (regionCenter != null) {
+            Location l = regionCenter.subtract(player.getLocation());
+            double distance = player.getLocation().distance(regionCenter);
+
+            Vector vector = l.toVector().add(new Vector(0, 5, 0)).multiply(1.25 / distance);
+            player.setVelocity(vector.multiply(-1.5));
+        }
     }
 
 }
