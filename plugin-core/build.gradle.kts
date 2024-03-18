@@ -18,7 +18,7 @@ dependencies {
     implementation("cc.dreamcode.notice:bukkit:1.3.11")
     implementation("cc.dreamcode.notice:bukkit-serdes:1.3.11")
     implementation("cc.dreamcode.command:core:1.4.16")
-    implementation("cc.dreamcode.command:bukkit:1.4.16")
+    implementation("cc.dreamcode.command:bukkit:1.4.22")
 
     implementation("eu.okaeri:okaeri-configs-yaml-bukkit:5.0.0-beta.5")
     implementation("eu.okaeri:okaeri-configs-serdes-bukkit:5.0.0-beta.5")
