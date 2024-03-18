@@ -14,7 +14,7 @@ dependencies {
     implementation("cc.dreamcode.platform:persistence:1.9.15")
     implementation("cc.dreamcode:utilities:1.2.22")
     implementation("cc.dreamcode:utilities-bukkit:1.2.22")
-    implementation("cc.dreamcode.notice:minecraft:1.3.11")
+    implementation("cc.dreamcode.notice:minecraft:1.4.5")
     implementation("cc.dreamcode.notice:bukkit:1.3.11")
     implementation("cc.dreamcode.notice:bukkit-serdes:1.3.11")
     implementation("cc.dreamcode.command:core:1.4.16")
